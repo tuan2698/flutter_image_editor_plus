@@ -19,8 +19,8 @@ void main() async {
 class WidgetEditableImage extends StatefulWidget {
   ///
   const WidgetEditableImage({
-    @required this.imagem,
-    Key key,
+    required this.imagem,
+    Key? key,
   }) : super(key: key);
 
   /// Image as a byte array to be edited
@@ -32,11 +32,11 @@ class WidgetEditableImage extends StatefulWidget {
 
 ///
 class WidgetEditableImageState extends State<WidgetEditableImage> {
-  StreamController<Uint8List> _pictureStream;
-  double _contrast;
-  double _brightness;
-  ByteData _pictureByteData;
-  Uint8List _picture;
+ late StreamController<Uint8List> _pictureStream;
+ late double _contrast;
+ late double _brightness;
+ late ByteData _pictureByteData;
+ late Uint8List _picture;
 
   @override
   void initState() {
@@ -155,7 +155,7 @@ If you want to change the brightness and contrast of the image, use this on the 
             builder: (BuildContext context, snapshot) {
               if (snapshot.connectionState == ConnectionState.active) {
                 return Image.memory(
-                  snapshot.data,
+                  snapshot.data!,
                   gaplessPlayback: true,
                   fit: BoxFit.contain,
                 );
